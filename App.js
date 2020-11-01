@@ -9,10 +9,10 @@ import cartReducer from './store/reducers/cart';
 import ordersReducer from './store/reducers/orders';
 import ShopNavigator from './navigation/ShopNavigator';
 
-
-export default function App() {
-
+const App = () => {
   return (
 
   );
 }
+
+export default App;

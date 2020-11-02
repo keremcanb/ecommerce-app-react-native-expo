@@ -8,7 +8,7 @@ import ProductItem from '../../components/shop/ProductItem';
 import * as cartActions from '../../store/actions/cart';
 import Colors from '../../constants/Colors';
 
-const ProductsOverviewScreen = () => {
+const ProductsOverviewScreen = ({ navigation }) => {
   const products = useSelector((state) => state.products.availableProducts);
 
   return (
@@ -20,12 +20,23 @@ const ProductsOverviewScreen = () => {
           image={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
-          onViewDetail={() => {}}
+          onViewDetail={() => {
+            navigation.navigate('ProductDetail', {
+              productId: itemData.item.id,
+              productTitle: itemData.item.title
+            });
+          }}
           onAddToCart={() => {}}
         />
       )}
     />
   );
+};
+
+ProductsOverviewScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: 'All Products'
+  };
 };
 
 export default ProductsOverviewScreen;

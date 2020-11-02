@@ -12,28 +12,45 @@ import {
 
 import Card from '../UI/Card';
 import Colors from '../../constants/Colors';
+import { Touchable } from 'react-native-web';
 
 const ProductItem = ({ image, title, price, onViewDetail, onAddToCart }) => {
+  let TouchableCmp = TouchableOpacity;
+
+  if (Platform.OS === 'android' && Platform.Version >= 21) {
+    TouchableCmp = TouchableNativeFeedback;
+  }
+
   return (
     <View style={styles.product}>
-      <View style={styles.imageContainer}>
-        <Image style={styles.image} source={{ uri: image }} />
-      </View>
+      <View style={styles.touchable}>
+        <TouchableCmp onPress={onViewDetail} useForeground>
+          <View>
+            <View style={styles.imageContainer}>
+              <Image style={styles.image} source={{ uri: image }} />
+            </View>
 
-      <View style={styles.details}>
-        <Text style={styles.title}>{title}</Text>
+            <View style={styles.details}>
+              <Text style={styles.title}>{title}</Text>
 
-        <Text style={styles.price}>${price.toFixed(2)}</Text>
-      </View>
+              <Text style={styles.price}>${price.toFixed(2)}</Text>
+            </View>
 
-      <View style={styles.actions}>
-        <Button
-          title="View Details"
-          color={Colors.primary}
-          onPress={onViewDetail}
-        />
+            <View style={styles.actions}>
+              <Button
+                title="View Details"
+                color={Colors.primary}
+                onPress={onViewDetail}
+              />
 
-        <Button title="To Cart" color={Colors.primary} onPress={onAddToCart} />
+              <Button
+                title="To Cart"
+                color={Colors.primary}
+                onPress={onAddToCart}
+              />
+            </View>
+          </View>
+        </TouchableCmp>
       </View>
     </View>
   );

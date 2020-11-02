@@ -8,7 +8,7 @@ import { Platform } from 'react-native';
 // import { Ionicons } from '@expo/vector-icons';
 
 import ProductsOverviewScreen from '../screens/shop/ProductsOverviewScreen';
-// import ProductDetailScreen from '../screens/shop/ProductDetailScreen';
+import ProductDetailScreen from '../screens/shop/ProductDetailScreen';
 // import CartScreen from '../screens/shop/CartScreen';
 // import OrdersScreen from '../screens/shop/OrdersScreen';
 // import UserProductsScreen from '../screens/user/UserProductsScreen';
@@ -17,7 +17,8 @@ import Colors from '../constants/Colors';
 
 const ProductsNavigator = createStackNavigator(
   {
-    ProductsOverview: ProductsOverviewScreen
+    ProductsOverview: ProductsOverviewScreen,
+    ProductDetail: ProductDetailScreen
   },
   {
     defaultNavigationOptions: {

@@ -11,11 +11,8 @@ import {
 
 import Card from '../UI/Card';
 
-const ProductItem = props => {
-
-  return (
-
-  );
+const ProductItem = (props) => {
+  return <div></div>;
 };
 
 const styles = StyleSheet.create({

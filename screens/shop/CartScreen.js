@@ -8,11 +8,8 @@ import Card from '../../components/UI/Card';
 import * as cartActions from '../../store/actions/cart';
 import * as ordersActions from '../../store/actions/orders';
 
-const CartScreen = props => {
-
-  return (
-
-  );
+const CartScreen = (props) => {
+  return <div></div>;
 };
 
 CartScreen.navigationOptions = {

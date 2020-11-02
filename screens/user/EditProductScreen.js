@@ -13,15 +13,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import HeaderButton from '../../components/UI/HeaderButton';
 import * as productsActions from '../../store/actions/products';
 
-const EditProductScreen = props => {
-
-
-  return (
-
-  );
+const EditProductScreen = (props) => {
+  return <div></div>;
 };
 
-EditProductScreen.navigationOptions = navData => {
+EditProductScreen.navigationOptions = (navData) => {
   const submitFn = navData.navigation.getParam('submit');
   return {
     headerTitle: navData.navigation.getParam('productId')

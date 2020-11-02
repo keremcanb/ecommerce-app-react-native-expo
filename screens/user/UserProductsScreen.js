@@ -8,14 +8,8 @@ import ProductItem from '../../components/shop/ProductItem';
 import Colors from '../../constants/Colors';
 import * as productsActions from '../../store/actions/products';
 
-const UserProductsScreen = props => {
-
-
-  return (
-
-  );
+const UserProductsScreen = (props) => {
+  return <div></div>;
 };
-
-
 
 export default UserProductsScreen;

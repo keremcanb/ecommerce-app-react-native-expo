@@ -8,10 +8,8 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const CartItem = props => {
-  return (
-
-  );
+const CartItem = (props) => {
+  return <div></div>;
 };
 
 const styles = StyleSheet.create({

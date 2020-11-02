@@ -5,11 +5,8 @@ import CartItem from './CartItem';
 import Colors from '../../constants/Colors';
 import Card from '../UI/Card';
 
-const OrderItem = props => {
-
-  return (
-
-  );
+const OrderItem = (props) => {
+  return <div></div>;
 };
 
 const styles = StyleSheet.create({

@@ -1,13 +1,18 @@
 import PRODUCTS from '../../data/dummy-data';
-import {
-  DELETE_PRODUCT,
-  CREATE_PRODUCT,
-  UPDATE_PRODUCT,
-} from '../actions/products';
-import Product from '../../models/product';
+// import {
+//   DELETE_PRODUCT,
+//   CREATE_PRODUCT,
+//   UPDATE_PRODUCT
+// } from '../actions/products';
+// import Product from '../../models/product';
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-  }
+const initialState = {
+  availableProducts: PRODUCTS,
+  userProducts: PRODUCTS.filter((prod) => prod.ownerId === 'ul')
+};
+
+export default (state = initialState) => {
+  // switch (action.type) {
+  // }
   return state;
 };

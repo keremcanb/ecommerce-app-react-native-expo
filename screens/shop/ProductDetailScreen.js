@@ -12,14 +12,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../../constants/Colors';
 import * as cartActions from '../../store/actions/cart';
 
-const ProductDetailScreen = props => {
-
-
-  return (
-
-  );
+const ProductDetailScreen = (props) => {
+  return <div></div>;
 };
-
 
 const styles = StyleSheet.create({
   image: {

@@ -6,7 +6,7 @@ import Colors from '../../constants/Colors';
 import Card from '../UI/Card';
 
 const OrderItem = (props) => {
-  return <div></div>;
+  return <View></View>;
 };
 
 const styles = StyleSheet.create({

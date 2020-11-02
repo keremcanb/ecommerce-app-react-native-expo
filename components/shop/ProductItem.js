@@ -6,13 +6,37 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableNativeFeedback,
-  Platform
+  Platform,
+  Button
 } from 'react-native';
 
 import Card from '../UI/Card';
+import Colors from '../../constants/Colors';
 
-const ProductItem = (props) => {
-  return <div></div>;
+const ProductItem = ({ image, title, price, onViewDetail, onAddToCart }) => {
+  return (
+    <View style={styles.product}>
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={{ uri: image }} />
+      </View>
+
+      <View style={styles.details}>
+        <Text style={styles.title}>{title}</Text>
+
+        <Text style={styles.price}>${price.toFixed(2)}</Text>
+      </View>
+
+      <View style={styles.actions}>
+        <Button
+          title="View Details"
+          color={Colors.primary}
+          onPress={onViewDetail}
+        />
+
+        <Button title="To Cart" color={Colors.primary} onPress={onAddToCart} />
+      </View>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

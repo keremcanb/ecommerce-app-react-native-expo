@@ -13,7 +13,7 @@ import Colors from '../../constants/Colors';
 import * as cartActions from '../../store/actions/cart';
 
 const ProductDetailScreen = (props) => {
-  return <div></div>;
+  return <View></View>;
 };
 
 const styles = StyleSheet.create({

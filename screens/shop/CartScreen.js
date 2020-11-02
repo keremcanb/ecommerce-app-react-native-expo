@@ -9,7 +9,7 @@ import * as cartActions from '../../store/actions/cart';
 import * as ordersActions from '../../store/actions/orders';
 
 const CartScreen = (props) => {
-  return <div></div>;
+  return <View></View>;
 };
 
 CartScreen.navigationOptions = {

@@ -19,7 +19,8 @@ module.exports = {
     'jsx-quotes': 'off',
     'global-require': 'off',
     'no-unused-vars': 'off',
-    'react-redux/useSelector-prefer-selectors': 'off'
+    'react-redux/useSelector-prefer-selectors': 'off',
+    'no-use-before-define': 'off'
   },
   globals: {
     fetch: false

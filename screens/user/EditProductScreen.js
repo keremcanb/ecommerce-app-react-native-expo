@@ -14,7 +14,7 @@ import HeaderButton from '../../components/UI/HeaderButton';
 import * as productsActions from '../../store/actions/products';
 
 const EditProductScreen = (props) => {
-  return <div></div>;
+  return <View></View>;
 };
 
 const styles = StyleSheet.create({

@@ -9,7 +9,7 @@ import Colors from '../../constants/Colors';
 import * as productsActions from '../../store/actions/products';
 
 const UserProductsScreen = (props) => {
-  return <div></div>;
+  return <View></View>;
 };
 
 export default UserProductsScreen;

@@ -4,7 +4,8 @@ module.exports = {
     'plugin:jsx-a11y/recommended',
     'prettier',
     'prettier/react',
-    'plugin:react-redux/recommended'
+    'plugin:react-redux/recommended',
+    'plugin:react-hooks/recommended'
   ],
   plugins: ['jsx-a11y', 'prettier', 'react-redux'],
   parser: 'babel-eslint',
@@ -16,7 +17,9 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'linebreak-style': 0,
     'jsx-quotes': 'off',
-    'global-require': 'off'
+    'global-require': 'off',
+    'no-unused-vars': 'off',
+    'react-redux/useSelector-prefer-selectors': 'off'
   },
   globals: {
     fetch: false

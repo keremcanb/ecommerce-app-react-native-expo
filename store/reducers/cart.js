@@ -4,8 +4,8 @@ import CartItem from '../../models/cart-item';
 import { DELETE_PRODUCT } from '../actions/products';
 
 export default (state = initialState, action) => {
-  switch (action.type) {
-  }
+  // switch (action.type) {
+  // }
 
   return state;
 };

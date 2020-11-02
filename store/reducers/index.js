@@ -5,4 +5,6 @@ import products from './products';
 
 export default combineReducers({
   products
+  // cart,
+  // orders
 });

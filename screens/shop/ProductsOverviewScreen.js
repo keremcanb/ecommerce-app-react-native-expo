@@ -11,6 +11,8 @@ import Colors from '../../constants/Colors';
 const ProductsOverviewScreen = ({ navigation }) => {
   const products = useSelector((state) => state.products.availableProducts);
 
+  const dispatch = useDispatch();
+
   return (
     <FlatList
       data={products}
@@ -26,7 +28,9 @@ const ProductsOverviewScreen = ({ navigation }) => {
               productTitle: itemData.item.title
             });
           }}
-          onAddToCart={() => {}}
+          onAddToCart={() => {
+            dispatch(cartActions.addToCart(itemData.item));
+          }}
         />
       )}
     />

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo/vector-icons": "^10.0.0",
+    "@react-native-community/masked-view": "^0.1.10",
     "expo": "^39.0.0",
     "expo-font": "~8.3.0",
     "moment": "^2.24.0",
@@ -17,10 +18,12 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.3.tar.gz",
     "react-native-gesture-handler": "~1.7.0",
     "react-native-reanimated": "~1.13.0",
+    "react-native-safe-area-context": "^3.1.4",
     "react-native-screens": "~2.10.1",
     "react-native-web": "~0.13.7",
-    "react-navigation": "^3.11.1",
-    "react-navigation-header-buttons": "^3.0.1",
+    "react-navigation": "^4.4.3",
+    "react-navigation-header-buttons": "^6.0.0",
+    "react-navigation-stack": "^2.10.0",
     "react-redux": "^7.1.0",
     "redux": "^4.0.4",
     "redux-devtools-extension": "^2.13.8"

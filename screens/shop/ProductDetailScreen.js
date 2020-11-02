@@ -18,12 +18,17 @@ const ProductDetailScreen = ({ navigation }) => {
   const selectedProduct = useSelector((state) =>
     state.products.availableProducts.find((product) => product.id === productId)
   );
-  const { image, title, price } = selectedProduct;
+  const { imageUrl, title, price, description } = selectedProduct;
 
   return (
-    <View>
-      <Text>{title}</Text>
-    </View>
+    <ScrollView>
+      <Image style={styles.image} source={{ uri: imageUrl }} />
+      <View style={styles.actions}>
+        <Button color={Colors.primary} title="Add to Cart" onPress={() => {}} />
+      </View>
+      <Text style={styles.price}>${price.toFixed(2)}</Text>
+      <Text style={styles.description}>{description}</Text>
+    </ScrollView>
   );
 };
 

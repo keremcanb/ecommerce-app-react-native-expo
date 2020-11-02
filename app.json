@@ -1,7 +1,6 @@
 {
   "expo": {
-    "name": "RN Guide",
-    "slug": "rn-complete-guide",
+    "name": "eCommerce App",
     "privacy": "public",
     "platforms": [
       "ios",

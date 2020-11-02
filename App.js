@@ -1,22 +1,13 @@
 import React, { useState } from 'react';
-import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
+import { enableScreens } from 'react-native-screens';
 // import { AppLoading } from 'expo';
 // import * as Font from 'expo-font';
-import { enableScreens } from 'react-native-screens';
 
-import productsReducer from './store/reducers/products';
-// import cartReducer from './store/reducers/cart';
-// import ordersReducer from './store/reducers/orders';
+import store from './store';
 import ShopNavigator from './navigation/ShopNavigator';
 
 enableScreens();
-
-const rootReducer = combineReducers({
-  products: productsReducer
-});
-
-const store = createStore(rootReducer);
 
 const App = () => {
   return (

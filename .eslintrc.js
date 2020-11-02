@@ -3,9 +3,10 @@ module.exports = {
     'airbnb',
     'plugin:jsx-a11y/recommended',
     'prettier',
-    'prettier/react'
+    'prettier/react',
+    'plugin:react-redux/recommended'
   ],
-  plugins: ['jsx-a11y', 'prettier'],
+  plugins: ['jsx-a11y', 'prettier', 'react-redux'],
   parser: 'babel-eslint',
   rules: {
     'react/jsx-filename-extension': 'off',

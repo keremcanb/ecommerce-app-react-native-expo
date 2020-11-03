@@ -39,7 +39,18 @@ const ProductsOverviewScreen = ({ navigation }) => {
 
 ProductsOverviewScreen.navigationOptions = (navData) => {
   return {
-    headerTitle: 'All Products'
+    headerTitle: 'Products',
+    headerRight: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+        <Item
+          title="Cart"
+          iconName={Platform.OS === 'android' ? 'md-cart' : 'ios-cart'}
+          onPress={() => {
+            navData.navigation.navigate('Cart');
+          }}
+        />
+      </HeaderButtons>
+    )
   };
 };
 

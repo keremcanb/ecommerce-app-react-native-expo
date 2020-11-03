@@ -20,7 +20,8 @@ module.exports = {
     'global-require': 'off',
     'no-unused-vars': 'off',
     'react-redux/useSelector-prefer-selectors': 'off',
-    'no-use-before-define': 'off'
+    'no-use-before-define': 'off',
+    'react/jsx-props-no-spreading': 'off'
   },
   globals: {
     fetch: false

@@ -8,11 +8,11 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const CartItem = ({ qty, title, amount, deleteHandler }) => {
+const CartItem = ({ quantity, title, amount, deleteHandler }) => {
   return (
     <View style={styles.cartItem}>
       <Text style={styles.itemData}>
-        <Text style={styles.qty}>{qty} </Text>
+        <Text style={styles.quantity}>{quantity} </Text>
 
         <Text style={styles.title}>{title}</Text>
       </Text>
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
-  qty: {
+  quantity: {
     fontFamily: 'open-sans',
     color: '#888',
     fontSize: 16

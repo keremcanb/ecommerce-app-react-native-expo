@@ -21,7 +21,7 @@ const CartScreen = () => {
         productId: key,
         productTitle: state.cart.items[key].productTitle,
         productPrice: state.cart.items[key].productPrice,
-        qty: state.cart.items[key].qty,
+        quantity: state.cart.items[key].quantity,
         sum: state.cart.items[key].sum
       });
     }
@@ -48,7 +48,7 @@ const CartScreen = () => {
         keyExtractor={(item) => item.productId}
         renderItem={(itemData) => (
           <CartItem
-            qty={itemData.item.qty}
+            quantity={itemData.item.quantity}
             title={itemData.item.productTitle}
             amount={itemData.item.sum}
             deleteHandler={() => {

@@ -22,16 +22,16 @@ export default (state = initialState, action) => {
       let cartItem;
       // Update items in cart
       if (state.items[id]) {
-        // Update individual qty & sum
+        // Update individual quantity & sum
         cartItem = new CartItem(
-          state.items[id].qty + 1,
+          state.items[id].quantity + 1,
           productPrice,
           productTitle,
           state.items[id].sum + productPrice
         );
         // Add new item to cart
       } else {
-        // qty, price, title, sum
+        // quantity, price, title, sum
         cartItem = new CartItem(1, productPrice, productTitle, productPrice);
       }
       return {

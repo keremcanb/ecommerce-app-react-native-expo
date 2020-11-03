@@ -10,7 +10,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 
 import Colors from '../../constants/Colors';
-import * as cartActions from '../../store/actions/cart';
+import { addToCart } from '../../store/actions/cart';
 
 const ProductDetailScreen = ({ navigation }) => {
   const productId = navigation.getParam('productId');
@@ -31,7 +31,7 @@ const ProductDetailScreen = ({ navigation }) => {
           color={Colors.primary}
           title="Add to Cart"
           onPress={() => {
-            dispatch(cartActions.addToCart(selectedProduct));
+            dispatch(addToCart(selectedProduct));
           }}
         />
       </View>

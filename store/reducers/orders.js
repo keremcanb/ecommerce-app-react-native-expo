@@ -1,3 +1,5 @@
+/* eslint-disable default-case */
+/* eslint-disable no-case-declarations */
 import { ADD_ORDER } from '../../constants/ReduxConstants';
 import Order from '../../models/order';
 
@@ -6,8 +8,21 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  // switch (action.type) {
-  // }
+  const { type, orderData } = action;
+
+  switch (type) {
+    case ADD_ORDER:
+      const newOrder = new Order(
+        new Date().toString(),
+        orderData.items,
+        orderData.amount,
+        new Date()
+      );
+      return {
+        ...state,
+        orders: state.orders.concat(newOrder)
+      };
+  }
 
   return state;
 };

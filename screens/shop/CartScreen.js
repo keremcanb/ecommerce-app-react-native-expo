@@ -21,7 +21,7 @@ const CartScreen = () => {
         productId: key,
         productTitle: state.cart.items[key].productTitle,
         productPrice: state.cart.items[key].productPrice,
-        qty: state.cart.items[key].quantity,
+        qty: state.cart.items[key].qty,
         sum: state.cart.items[key].sum
       });
     }
@@ -41,15 +41,24 @@ const CartScreen = () => {
           disabled={cartItems.length === 0}
         />
       </View>
-      <View>
-        <Text>CART ITEMS</Text>
-      </View>
+      <FlatList
+        data={cartItems}
+        keyExtractor={(item) => item.productId}
+        renderItem={(itemData) => (
+          <CartItem
+            qty={itemData.item.qty}
+            title={itemData.item.productTitle}
+            amount={itemData.item.sum}
+            deleteHandler={() => {}}
+          />
+        )}
+      />
     </View>
   );
 };
 
 CartScreen.navigationOptions = {
-  headerTitle: 'My Cart'
+  headerTitle: 'Cart'
 };
 
 const styles = StyleSheet.create({

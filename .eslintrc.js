@@ -7,7 +7,7 @@ module.exports = {
     'plugin:react-redux/recommended',
     'plugin:react-hooks/recommended'
   ],
-  plugins: ['jsx-a11y', 'prettier', 'react-redux'],
+  plugins: ['jsx-a11y', 'prettier', 'react-redux', 'react-native'],
   parser: 'babel-eslint',
   rules: {
     'react/jsx-filename-extension': 'off',

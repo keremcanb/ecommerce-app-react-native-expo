@@ -7,7 +7,7 @@ import PRODUCTS from '../../data/dummy-data';
 // import Product from '../../models/product';
 
 const initialState = {
-  availableProducts: PRODUCTS,
+  allProducts: PRODUCTS,
   userProducts: PRODUCTS.filter((product) => product.ownerId === 'u1')
 };
 

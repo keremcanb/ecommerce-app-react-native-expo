@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center'
   },
-  quantity: {
+  qty: {
     fontFamily: 'open-sans',
     color: '#888',
     fontSize: 16

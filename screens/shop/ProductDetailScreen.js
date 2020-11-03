@@ -16,7 +16,7 @@ const ProductDetailScreen = ({ navigation }) => {
   const productId = navigation.getParam('productId');
 
   const selectedProduct = useSelector((state) =>
-    state.products.availableProducts.find((product) => product.id === productId)
+    state.products.allProducts.find((product) => product.id === productId)
   );
   const { imageUrl, title, price, description } = selectedProduct;
 
@@ -25,6 +25,7 @@ const ProductDetailScreen = ({ navigation }) => {
   return (
     <ScrollView>
       <Image style={styles.image} source={{ uri: imageUrl }} />
+
       <View style={styles.actions}>
         <Button
           color={Colors.primary}
@@ -34,7 +35,9 @@ const ProductDetailScreen = ({ navigation }) => {
           }}
         />
       </View>
+
       <Text style={styles.price}>${price.toFixed(2)}</Text>
+
       <Text style={styles.description}>{description}</Text>
     </ScrollView>
   );

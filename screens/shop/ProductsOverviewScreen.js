@@ -9,7 +9,7 @@ import * as cartActions from '../../store/actions/cart';
 import Colors from '../../constants/Colors';
 
 const ProductsOverviewScreen = ({ navigation }) => {
-  const products = useSelector((state) => state.products.availableProducts);
+  const products = useSelector((state) => state.products.allProducts);
 
   const dispatch = useDispatch();
 
@@ -22,13 +22,13 @@ const ProductsOverviewScreen = ({ navigation }) => {
           image={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
-          onViewDetail={() => {
+          viewDetailsHandler={() => {
             navigation.navigate('ProductDetail', {
               productId: itemData.item.id,
               productTitle: itemData.item.title
             });
           }}
-          onAddToCart={() => {
+          addToCartHandler={() => {
             dispatch(cartActions.addToCart(itemData.item));
           }}
         />

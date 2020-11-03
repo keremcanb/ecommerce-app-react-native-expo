@@ -1,9 +1,9 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable default-case */
 import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cart';
-import { ADD_ORDER } from '../actions/orders';
+// import { ADD_ORDER } from '../actions/orders';
 import CartItem from '../../models/cart-item';
-import { DELETE_PRODUCT } from '../actions/products';
+// import { DELETE_PRODUCT } from '../actions/products';
 
 const initialState = {
   items: {},
@@ -16,33 +16,26 @@ export default (state = initialState, action) => {
   switch (type) {
     case ADD_TO_CART:
       const addedProduct = product;
-      const { id, title, price } = addedProduct;
+      const { id, title: productTitle, price: productPrice } = addedProduct;
 
-      const productPrice = price;
-      const productTitle = title;
+      let cartItem;
 
-      let updatedOrNewCartItem;
-
+      // Items in cart, update existing items
       if (state.items[id]) {
-        // Already item in cart, update existing item
-        updatedOrNewCartItem = new CartItem(
-          state.items[id].quantity + 1,
+        cartItem = new CartItem(
+          state.items[id].qty + 1,
           productPrice,
           productTitle,
           state.items[id].sum + productPrice
         );
+        // Cart empty, add new item
       } else {
-        // Add new item
-        updatedOrNewCartItem = new CartItem(
-          1,
-          productPrice,
-          productTitle,
-          productPrice
-        );
+        cartItem = new CartItem(1, productPrice, productTitle, productPrice);
       }
+
       return {
         ...state,
-        items: { ...state.items, [id]: updatedOrNewCartItem },
+        items: { ...state.items, [id]: cartItem },
         totalAmount: state.totalAmount + productPrice
       };
   }

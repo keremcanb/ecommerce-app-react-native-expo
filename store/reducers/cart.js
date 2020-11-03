@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable default-case */
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cart';
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../../constants/ReduxConstants';
 // import { ADD_ORDER } from '../actions/orders';
 import CartItem from '../../models/cart-item';
 // import { DELETE_PRODUCT } from '../actions/products';

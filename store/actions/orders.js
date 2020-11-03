@@ -1,1 +1,1 @@
-export const ADD_ORDER = 'ADD_ORDER';
+import { ADD_ORDER } from '../../constants/ReduxConstants';

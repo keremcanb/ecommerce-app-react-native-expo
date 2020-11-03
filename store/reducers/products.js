@@ -1,9 +1,9 @@
 import PRODUCTS from '../../data/dummy-data';
 // import {
-//   DELETE_PRODUCT,
 //   CREATE_PRODUCT,
-//   UPDATE_PRODUCT
-// } from '../actions/products';
+//   UPDATE_PRODUCT,
+//   DELETE_PRODUCT
+// } from '../../constants/ReduxConstants';
 // import Product from '../../models/product';
 
 const initialState = {

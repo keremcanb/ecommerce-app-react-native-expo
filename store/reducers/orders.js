@@ -1,4 +1,4 @@
-import { ADD_ORDER } from '../actions/orders';
+import { ADD_ORDER } from '../../constants/ReduxConstants';
 import Order from '../../models/order';
 
 const initialState = {

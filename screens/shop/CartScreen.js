@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../../constants/Colors';
 import CartItem from '../../components/shop/CartItem';
 import Card from '../../components/UI/Card';
-import * as cartActions from '../../store/actions/cart';
+import { removeFromCart } from '../../store/actions/cart';
 import * as ordersActions from '../../store/actions/orders';
 
 const CartScreen = () => {
@@ -26,8 +26,10 @@ const CartScreen = () => {
       });
     }
 
-    return cartItemsArray;
+    return cartItemsArray.sort((a, b) => (a.productId > b.productId ? 1 : -1));
   });
+
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.screen}>
@@ -49,7 +51,9 @@ const CartScreen = () => {
             qty={itemData.item.qty}
             title={itemData.item.productTitle}
             amount={itemData.item.sum}
-            deleteHandler={() => {}}
+            deleteHandler={() => {
+              dispatch(removeFromCart(itemData.item.productId));
+            }}
           />
         )}
       />

@@ -43,6 +43,7 @@ const ProductsOverviewScreen = ({ navigation }) => {
               selectItemHandler(itemData.item.id, itemData.item.title);
             }}
           />
+
           <Button
             title="Add to Cart"
             color={Colors.primary}

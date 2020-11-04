@@ -12,8 +12,10 @@ const OrderItem = ({ amount, date, items }) => {
     <View style={styles.orderItem}>
       <View style={styles.summary}>
         <Text style={styles.totalAmount}>${amount.toFixed(2)}</Text>
+
         <Text style={styles.date}>{date}</Text>
       </View>
+
       <Button
         color={Colors.primary}
         title={showDetails ? 'Hide Details' : 'Show Details'}
@@ -21,6 +23,7 @@ const OrderItem = ({ amount, date, items }) => {
           setShowDetails((prevState) => !prevState);
         }}
       />
+
       {showDetails && (
         <View style={styles.detailItems}>
           {items.map((cartItem) => (

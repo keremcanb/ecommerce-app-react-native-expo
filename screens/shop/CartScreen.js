@@ -37,6 +37,7 @@ const CartScreen = () => {
         <Text style={styles.summaryText}>
           Total: <Text style={styles.amount}>${cartTotal.toFixed(2)}</Text>
         </Text>
+
         <Button
           color={Colors.accent}
           title="Order Now"
@@ -46,6 +47,7 @@ const CartScreen = () => {
           }}
         />
       </View>
+
       <FlatList
         data={cartItems}
         keyExtractor={(item) => item.productId}

@@ -1,5 +1,3 @@
-/* eslint-disable no-case-declarations */
-/* eslint-disable default-case */
 import {
   ADD_TO_CART,
   REMOVE_FROM_CART,

@@ -1,5 +1,3 @@
-/* eslint-disable default-case */
-/* eslint-disable no-case-declarations */
 import { ADD_ORDER } from '../../constants/ReduxConstants';
 import Order from '../../models/order';
 

@@ -21,7 +21,9 @@ module.exports = {
     'no-unused-vars': 'off',
     'react-redux/useSelector-prefer-selectors': 'off',
     'no-use-before-define': 'off',
-    'react/jsx-props-no-spreading': 'off'
+    'react/jsx-props-no-spreading': 'off',
+    'no-case-declarations': 'off',
+    'default-case': 'off'
   },
   globals: {
     fetch: false

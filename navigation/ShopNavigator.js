@@ -41,9 +41,7 @@ const ProductsNavigator = createStackNavigator(
           color={drawerConfig.tintColor}
         />
       )
-    }
-  },
-  {
+    },
     defaultNavigationOptions: defaultNavOptions
   }
 );
@@ -61,9 +59,7 @@ const OrdersNavigator = createStackNavigator(
           color={drawerConfig.tintColor}
         />
       )
-    }
-  },
-  {
+    },
     defaultNavigationOptions: defaultNavOptions
   }
 );

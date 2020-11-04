@@ -1,9 +1,12 @@
 /* eslint-disable no-case-declarations */
 /* eslint-disable default-case */
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../../constants/ReduxConstants';
-// import { ADD_ORDER } from '../actions/orders';
+import {
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  ADD_ORDER
+  // DELETE_PRODUCT
+} from '../../constants/ReduxConstants';
 import CartItem from '../../models/cart-item';
-// import { DELETE_PRODUCT } from '../actions/products';
 
 const initialState = {
   items: {},
@@ -68,6 +71,9 @@ export default (state = initialState, action) => {
         items: updatedCartItems,
         totalAmount: state.totalAmount - selectedCartItem.productPrice
       };
+
+    case ADD_ORDER:
+      return initialState;
   }
 
   return state;

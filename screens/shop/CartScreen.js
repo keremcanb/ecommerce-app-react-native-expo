@@ -54,6 +54,7 @@ const CartScreen = () => {
             quantity={itemData.item.quantity}
             title={itemData.item.productTitle}
             amount={itemData.item.sum}
+            deletable
             deleteHandler={() => {
               dispatch(removeFromCart(itemData.item.productId));
             }}

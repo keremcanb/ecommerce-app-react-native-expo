@@ -6,21 +6,13 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableNativeFeedback,
-  Platform,
-  Button
+  Platform
 } from 'react-native';
 
-import Card from '../UI/Card';
-import Colors from '../../constants/Colors';
 import { Touchable } from 'react-native-web';
+import Card from '../UI/Card';
 
-const ProductItem = ({
-  image,
-  title,
-  price,
-  viewDetailsHandler,
-  addToCartHandler
-}) => {
+const ProductItem = ({ image, title, price, children, selectItemHandler }) => {
   let TouchableCmp = TouchableOpacity;
   if (Platform.OS === 'android' && Platform.Version >= 21) {
     TouchableCmp = TouchableNativeFeedback;
@@ -29,7 +21,7 @@ const ProductItem = ({
   return (
     <View style={styles.product}>
       <View style={styles.touchable}>
-        <TouchableCmp onPress={viewDetailsHandler} useForeground>
+        <TouchableCmp onPress={selectItemHandler} useForeground>
           <View>
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={{ uri: image }} />
@@ -41,18 +33,7 @@ const ProductItem = ({
               <Text style={styles.price}>${price.toFixed(2)}</Text>
             </View>
 
-            <View style={styles.actions}>
-              <Button
-                title="View Details"
-                color={Colors.primary}
-                onPress={viewDetailsHandler}
-              />
-              <Button
-                title="Add to Cart"
-                color={Colors.primary}
-                onPress={addToCartHandler}
-              />
-            </View>
+            <View style={styles.actions}>{children}</View>
           </View>
         </TouchableCmp>
       </View>

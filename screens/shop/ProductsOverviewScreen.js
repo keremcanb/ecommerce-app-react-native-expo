@@ -13,6 +13,13 @@ const ProductsOverviewScreen = ({ navigation }) => {
 
   const dispatch = useDispatch();
 
+  const selectItemHandler = (id, title) => {
+    navigation.navigate('ProductDetail', {
+      productId: id,
+      productTitle: title
+    });
+  };
+
   return (
     <FlatList
       data={products}
@@ -22,16 +29,28 @@ const ProductsOverviewScreen = ({ navigation }) => {
           image={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
-          viewDetailsHandler={() => {
-            navigation.navigate('ProductDetail', {
-              productId: itemData.item.id,
-              productTitle: itemData.item.title
-            });
+          onSelect={() => {
+            selectItemHandler(itemData.item.id, itemData.item.title);
           }}
           addToCartHandler={() => {
             dispatch(addToCart(itemData.item));
           }}
-        />
+        >
+          <Button
+            title="View Details"
+            color={Colors.primary}
+            onPress={() => {
+              selectItemHandler(itemData.item.id, itemData.item.title);
+            }}
+          />
+          <Button
+            title="Add to Cart"
+            color={Colors.primary}
+            onPress={() => {
+              dispatch(addToCart(itemData.item));
+            }}
+          />
+        </ProductItem>
       )}
     />
   );

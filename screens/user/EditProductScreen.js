@@ -14,7 +14,11 @@ import HeaderButton from '../../components/UI/HeaderButton';
 import * as productsActions from '../../store/actions/products';
 
 const EditProductScreen = (props) => {
-  return <View></View>;
+  return (
+    <View>
+      <Text>Edit product</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({

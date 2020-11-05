@@ -6,10 +6,12 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
 import ProductItem from '../../components/shop/ProductItem';
 import Colors from '../../constants/Colors';
-import * as productsActions from '../../store/actions/products';
+import { deleteProduct } from '../../store/actions/products';
 
 const UserProductsScreen = ({ navigation }) => {
   const userProducts = useSelector((state) => state.products.userProducts);
+
+  const dispatch = useDispatch();
 
   return (
     <FlatList
@@ -20,9 +22,18 @@ const UserProductsScreen = ({ navigation }) => {
           image={itemData.item.imageUrl}
           title={itemData.item.title}
           price={itemData.item.price}
-          selectItemHandler={() => {}}
-          addToCartHandler={() => {}}
-        />
+          onSelect={() => {}}
+        >
+          <Button title="Edit" color={Colors.primary} onPress={() => {}} />
+
+          <Button
+            title="Delete"
+            color={Colors.primary}
+            onPress={() => {
+              dispatch(deleteProduct(itemData.item.id));
+            }}
+          />
+        </ProductItem>
       )}
     />
   );

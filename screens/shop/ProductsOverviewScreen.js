@@ -32,9 +32,6 @@ const ProductsOverviewScreen = ({ navigation }) => {
           onSelect={() => {
             selectItemHandler(itemData.item.id, itemData.item.title);
           }}
-          addToCartHandler={() => {
-            dispatch(addToCart(itemData.item));
-          }}
         >
           <Button
             title="View Details"

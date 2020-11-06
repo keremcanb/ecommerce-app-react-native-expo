@@ -14,7 +14,7 @@ const CartScreen = () => {
 
   const cartItems = useSelector((state) => {
     const cartItemsArray = [];
-
+    // Convert item is cart to array
     for (const key in state.cart.items) {
       cartItemsArray.push({
         productId: key,
@@ -24,7 +24,7 @@ const CartScreen = () => {
         sum: state.cart.items[key].sum
       });
     }
-
+    // Not clear
     return cartItemsArray.sort((a, b) => (a.productId > b.productId ? 1 : -1));
   });
 

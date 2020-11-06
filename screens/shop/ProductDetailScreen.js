@@ -15,8 +15,9 @@ import Colors from '../../constants/Colors';
 import { addToCart } from '../../store/actions/cart';
 
 const ProductDetailScreen = ({ navigation }) => {
+  // Get selected product id from products overview screen
   const productId = navigation.getParam('productId');
-
+  // Set selected product by comparing global state pid with passed pid
   const selectedProduct = useSelector((state) =>
     state.products.allProducts.find((product) => product.id === productId)
   );

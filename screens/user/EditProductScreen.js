@@ -9,34 +9,42 @@ import {
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
+
 import HeaderButton from '../../components/UI/HeaderButton';
 import * as productsActions from '../../store/actions/products';
 
-const EditProductScreen = ({ navigation }) => {
-  const productId = navigation.getParam('productId');
-
+const EditProductScreen = (props) => {
+  const prodId = props.navigation.getParam('productId');
   const editedProduct = useSelector((state) =>
-    state.products.userProducts.find((product) => product.id === productId)
+    state.products.userProducts.find((prod) => prod.id === prodId)
+  );
+  const dispatch = useDispatch();
+
+  const [title, setTitle] = useState(editedProduct ? editedProduct.title : '');
+  const [imageUrl, setImageUrl] = useState(
+    editedProduct ? editedProduct.imageUrl : ''
+  );
+  const [price, setPrice] = useState('');
+  const [description, setDescription] = useState(
+    editedProduct ? editedProduct.description : ''
   );
 
-  const [info, setInfo] = useState({
-    title: editedProduct ? editedProduct.title : '',
-    imageUrl: editedProduct ? editedProduct.imageUrl : '',
-    price: '',
-    description: editedProduct ? editedProduct.description : ''
-  });
-  const { title, imageUrl, price, description } = info;
-
-  const changeHandler = (e) =>
-    setInfo({ ...info, [e.target.name]: e.target.value });
-
   const submitHandler = useCallback(() => {
-    console.log('Submitting');
-  }, []);
+    if (editedProduct) {
+      dispatch(
+        productsActions.updateProduct(prodId, title, description, imageUrl)
+      );
+    } else {
+      dispatch(
+        productsActions.createProduct(title, description, imageUrl, +price)
+      );
+    }
+    props.navigation.goBack();
+  }, [dispatch, prodId, title, description, imageUrl, price]);
 
   useEffect(() => {
-    navigation.setParams({ submit: submitHandler });
-  }, [submitHandler, navigation]);
+    props.navigation.setParams({ submit: submitHandler });
+  }, [submitHandler]);
 
   return (
     <ScrollView>
@@ -45,41 +53,34 @@ const EditProductScreen = ({ navigation }) => {
           <Text style={styles.label}>Title</Text>
           <TextInput
             style={styles.input}
-            name={title}
             value={title}
-            onChange={changeHandler}
+            onChangeText={(text) => setTitle(text)}
           />
         </View>
-
         <View style={styles.formControl}>
-          <Text style={styles.label}>Image Url</Text>
+          <Text style={styles.label}>Image URL</Text>
           <TextInput
             style={styles.input}
             value={imageUrl}
-            name={imageUrl}
-            onChange={changeHandler}
+            onChangeText={(text) => setImageUrl(text)}
           />
         </View>
-
         {editedProduct ? null : (
           <View style={styles.formControl}>
             <Text style={styles.label}>Price</Text>
             <TextInput
               style={styles.input}
               value={price}
-              name={price}
-              onChange={changeHandler}
+              onChangeText={(text) => setPrice(text)}
             />
           </View>
         )}
-
         <View style={styles.formControl}>
           <Text style={styles.label}>Description</Text>
           <TextInput
             style={styles.input}
             value={description}
-            name={description}
-            onChange={changeHandler}
+            onChangeText={(text) => setDescription(text)}
           />
         </View>
       </View>
@@ -89,7 +90,6 @@ const EditProductScreen = ({ navigation }) => {
 
 EditProductScreen.navigationOptions = (navData) => {
   const submitFn = navData.navigation.getParam('submit');
-
   return {
     headerTitle: navData.navigation.getParam('productId')
       ? 'Edit Product'

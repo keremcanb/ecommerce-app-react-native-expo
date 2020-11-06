@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
       const { id, title: productTitle, price: productPrice } = addedProduct;
       // New or updated cart item
       let cartItem;
-      // Update items in cart
+      // If already items in cart, update
       if (state.items[id]) {
         // Update individual quantity & sum
         cartItem = new CartItem(
@@ -29,9 +29,9 @@ export default (state = initialState, action) => {
           productTitle,
           state.items[id].sum + productPrice
         );
-        // Add new item to cart
+        // If cart is empty, add new item
       } else {
-        // quantity, price, title, sum
+        // Quantity, price, title, sum
         cartItem = new CartItem(1, productPrice, productTitle, productPrice);
       }
       return {
@@ -48,7 +48,7 @@ export default (state = initialState, action) => {
       const currentQty = selectedCartItem.quantity;
 
       let updatedCartItems;
-      // Need to reduce, not delete
+      // if qty more than 1, reduce qty, price and sum
       if (currentQty > 1) {
         const updatedCartItem = new CartItem(
           selectedCartItem.quantity - 1,
@@ -57,7 +57,7 @@ export default (state = initialState, action) => {
           selectedCartItem.sum - selectedCartItem.productPrice
         );
         updatedCartItems = { ...state.items, [action.pid]: updatedCartItem };
-        // Delete
+        // Delete item
       } else {
         updatedCartItems = { ...state.items };
         delete updatedCartItems[action.pid];

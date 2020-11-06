@@ -31,7 +31,7 @@ const ProductItem = ({ image, title, price, children, onSelect }) => {
 
               <Text style={styles.price}>${price.toFixed(2)}</Text>
             </View>
-
+            {/* Not clear */}
             <View style={styles.actions}>{children}</View>
           </View>
         </TouchableCmp>

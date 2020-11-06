@@ -8,7 +8,6 @@ import {
   TouchableNativeFeedback,
   Platform
 } from 'react-native';
-
 import { Touchable } from 'react-native-web';
 import Card from '../UI/Card';
 

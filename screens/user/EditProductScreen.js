@@ -28,12 +28,16 @@ const EditProductScreen = ({ navigation }) => {
   });
   const { title, imageUrl, price, description } = info;
 
-  // const submitHandler = (e) => {
-  //   e.preventDefault();
-  // };
-
   const changeHandler = (e) =>
     setInfo({ ...info, [e.target.name]: e.target.value });
+
+  const submitHandler = useCallback(() => {
+    console.log('Submitting');
+  }, []);
+
+  useEffect(() => {
+    navigation.setParams({ submit: submitHandler });
+  }, [submitHandler, navigation]);
 
   return (
     <ScrollView>
@@ -85,6 +89,8 @@ const EditProductScreen = ({ navigation }) => {
 };
 
 EditProductScreen.navigationOptions = (navData) => {
+  const submitFn = navData.navigation.getParam('submit');
+
   return {
     headerTitle: navData.navigation.getParam('productId')
       ? 'Edit Product'
@@ -96,7 +102,7 @@ EditProductScreen.navigationOptions = (navData) => {
           iconName={
             Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'
           }
-          onPress={() => {}}
+          onPress={submitFn}
         />
       </HeaderButtons>
     )

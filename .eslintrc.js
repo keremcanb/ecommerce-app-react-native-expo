@@ -23,7 +23,8 @@ module.exports = {
     'no-use-before-define': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-case-declarations': 'off',
-    'default-case': 'off'
+    'default-case': 'off',
+    'no-console': 'off'
   },
   globals: {
     fetch: false

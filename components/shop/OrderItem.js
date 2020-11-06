@@ -6,6 +6,7 @@ import Colors from '../../constants/Colors';
 import Card from '../UI/Card';
 
 const OrderItem = ({ amount, date, items }) => {
+  // Don't show details initially
   const [showDetails, setShowDetails] = useState(false);
 
   return (
@@ -20,6 +21,8 @@ const OrderItem = ({ amount, date, items }) => {
         color={Colors.primary}
         title={showDetails ? 'Hide Details' : 'Show Details'}
         onPress={() => {
+          // Return opposite of showDetails prevState on press
+          // Value of state before setState was triggered by React
           setShowDetails((prevState) => !prevState);
         }}
       />

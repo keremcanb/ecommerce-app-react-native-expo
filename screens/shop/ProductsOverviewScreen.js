@@ -15,6 +15,7 @@ const ProductsOverviewScreen = ({ navigation }) => {
 
   const selectItemHandler = (id, title) => {
     navigation.navigate('ProductDetail', {
+      // Forwarding id and title
       productId: id,
       productTitle: title
     });
@@ -40,7 +41,6 @@ const ProductsOverviewScreen = ({ navigation }) => {
               selectItemHandler(itemData.item.id, itemData.item.title);
             }}
           />
-
           <Button
             title="Add to Cart"
             color={Colors.primary}

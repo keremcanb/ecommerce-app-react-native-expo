@@ -16,6 +16,21 @@ const UserProductsScreen = ({ navigation }) => {
     navigation.navigate('EditProduct', { productId: id });
   };
 
+  const deleteHandler = (id) => {
+    Alert.alert(
+      'Are you sure?',
+      'Really?',
+      { text: 'No', style: 'default' },
+      {
+        text: 'Yes',
+        style: 'destructive',
+        onPress: () => {
+          dispatch(deleteProduct(id));
+        }
+      }
+    );
+  };
+
   return (
     <FlatList
       data={userProducts}
@@ -39,9 +54,7 @@ const UserProductsScreen = ({ navigation }) => {
           <Button
             title="Delete"
             color={Colors.primary}
-            onPress={() => {
-              dispatch(deleteProduct(itemData.item.id));
-            }}
+            onPress={deleteHandler.bind(this, itemData.item.id)}
           />
         </ProductItem>
       )}

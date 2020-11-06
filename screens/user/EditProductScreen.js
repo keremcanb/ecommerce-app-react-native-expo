@@ -13,8 +13,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import HeaderButton from '../../components/UI/HeaderButton';
 import * as productsActions from '../../store/actions/products';
 
-const EditProductScreen = (props) => {
-  const prodId = props.navigation.getParam('productId');
+const EditProductScreen = ({ navigation }) => {
+  const prodId = navigation.getParam('productId');
   const editedProduct = useSelector((state) =>
     state.products.userProducts.find((prod) => prod.id === prodId)
   );
@@ -39,11 +39,11 @@ const EditProductScreen = (props) => {
         productsActions.createProduct(title, description, imageUrl, +price)
       );
     }
-    props.navigation.goBack();
+    navigation.goBack();
   }, [dispatch, prodId, title, description, imageUrl, price]);
 
   useEffect(() => {
-    props.navigation.setParams({ submit: submitHandler });
+    navigation.setParams({ submit: submitHandler });
   }, [submitHandler]);
 
   return (

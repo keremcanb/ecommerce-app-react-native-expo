@@ -32,7 +32,7 @@ const CartScreen = () => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.summary}>
+      <Card style={styles.summary}>
         <Text style={styles.summaryText}>
           Total:{' '}
           <Text style={styles.amount}>
@@ -48,7 +48,7 @@ const CartScreen = () => {
             dispatch(addOrder(cartItems, cartTotal));
           }}
         />
-      </View>
+      </Card>
 
       <FlatList
         data={cartItems}

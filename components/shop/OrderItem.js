@@ -9,7 +9,7 @@ const OrderItem = ({ amount, date, items }) => {
   const [showDetails, setShowDetails] = useState(false);
 
   return (
-    <View style={styles.orderItem}>
+    <Card style={styles.orderItem}>
       <View style={styles.summary}>
         <Text style={styles.totalAmount}>${amount.toFixed(2)}</Text>
 
@@ -38,7 +38,7 @@ const OrderItem = ({ amount, date, items }) => {
           ))}
         </View>
       )}
-    </View>
+    </Card>
   );
 };
 

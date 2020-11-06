@@ -12,54 +12,62 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  switch (action.type) {
+  const { type, pid, productData } = action;
+
+  switch (type) {
     case CREATE_PRODUCT:
       const newProduct = new Product(
         new Date().toString(),
         'u1',
-        action.productData.title,
-        action.productData.imageUrl,
-        action.productData.description,
-        action.productData.price
+        productData.title,
+        productData.imageUrl,
+        productData.description,
+        productData.price
       );
+
       return {
         ...state,
         allProducts: state.allProducts.concat(newProduct),
         userProducts: state.userProducts.concat(newProduct)
       };
+
     case UPDATE_PRODUCT:
       const productIndex = state.userProducts.findIndex(
-        (prod) => prod.id === action.pid
+        (production) => production.id === pid
       );
+
       const updatedProduct = new Product(
-        action.pid,
+        pid,
         state.userProducts[productIndex].ownerId,
-        action.productData.title,
-        action.productData.imageUrl,
-        action.productData.description,
+        productData.title,
+        productData.imageUrl,
+        productData.description,
         state.userProducts[productIndex].price
       );
+
       const updatedUserProducts = [...state.userProducts];
       updatedUserProducts[productIndex] = updatedProduct;
+
       const allProductIndex = state.allProducts.findIndex(
-        (prod) => prod.id === action.pid
+        (production) => production.id === pid
       );
+
       const updatedAvailableProducts = [...state.allProducts];
       updatedAvailableProducts[allProductIndex] = updatedProduct;
+
       return {
         ...state,
         allProducts: updatedAvailableProducts,
         userProducts: updatedUserProducts
       };
+
     case DELETE_PRODUCT:
       return {
         ...state,
         userProducts: state.userProducts.filter(
-          (product) => product.id !== action.pid
+          (product) => product.id !== pid
         ),
-        allProducts: state.allProducts.filter(
-          (product) => product.id !== action.pid
-        )
+        allProducts: state.allProducts.filter((product) => product.id !== pid)
       };
   }
   return state;

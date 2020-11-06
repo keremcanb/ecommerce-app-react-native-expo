@@ -17,9 +17,7 @@ const UserProductsScreen = ({ navigation }) => {
   };
 
   const deleteHandler = (id) => {
-    Alert.alert(
-      'Are you sure?',
-      'Really?',
+    Alert.alert('Are you sure?', 'Do you really want to delete this item?', [
       { text: 'No', style: 'default' },
       {
         text: 'Yes',
@@ -28,7 +26,7 @@ const UserProductsScreen = ({ navigation }) => {
           dispatch(deleteProduct(id));
         }
       }
-    );
+    ]);
   };
 
   return (

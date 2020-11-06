@@ -62,6 +62,7 @@ export default (state = initialState, action) => {
         updatedCartItems = { ...state.items };
         delete updatedCartItems[action.pid];
       }
+
       return {
         ...state,
         items: updatedCartItems,

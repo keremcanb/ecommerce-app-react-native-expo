@@ -11,14 +11,14 @@ import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
 
 import HeaderButton from '../../components/UI/HeaderButton';
-import * as productsActions from '../../store/actions/products';
+import { createProduct, updateProduct } from '../../store/actions/products';
 
 const EditProductScreen = ({ navigation }) => {
-  const prodId = navigation.getParam('productId');
+  const productId = navigation.getParam('productId');
+
   const editedProduct = useSelector((state) =>
-    state.products.userProducts.find((prod) => prod.id === prodId)
+    state.products.userProducts.find((product) => product.id === productId)
   );
-  const dispatch = useDispatch();
 
   const [title, setTitle] = useState(editedProduct ? editedProduct.title : '');
   const [imageUrl, setImageUrl] = useState(
@@ -29,18 +29,16 @@ const EditProductScreen = ({ navigation }) => {
     editedProduct ? editedProduct.description : ''
   );
 
+  const dispatch = useDispatch();
+
   const submitHandler = useCallback(() => {
     if (editedProduct) {
-      dispatch(
-        productsActions.updateProduct(prodId, title, description, imageUrl)
-      );
+      dispatch(updateProduct(productId, title, description, imageUrl));
     } else {
-      dispatch(
-        productsActions.createProduct(title, description, imageUrl, +price)
-      );
+      dispatch(createProduct(title, description, imageUrl, +price));
     }
     navigation.goBack();
-  }, [dispatch, prodId, title, description, imageUrl, price]);
+  }, [dispatch, productId, title, description, imageUrl, price]);
 
   useEffect(() => {
     navigation.setParams({ submit: submitHandler });
@@ -57,6 +55,7 @@ const EditProductScreen = ({ navigation }) => {
             onChangeText={(text) => setTitle(text)}
           />
         </View>
+
         <View style={styles.formControl}>
           <Text style={styles.label}>Image URL</Text>
           <TextInput
@@ -65,6 +64,7 @@ const EditProductScreen = ({ navigation }) => {
             onChangeText={(text) => setImageUrl(text)}
           />
         </View>
+
         {editedProduct ? null : (
           <View style={styles.formControl}>
             <Text style={styles.label}>Price</Text>
@@ -75,6 +75,7 @@ const EditProductScreen = ({ navigation }) => {
             />
           </View>
         )}
+
         <View style={styles.formControl}>
           <Text style={styles.label}>Description</Text>
           <TextInput

@@ -18,7 +18,6 @@ export default (state = initialState, action) => {
     case ADD_TO_CART:
       const addedProduct = product;
       const { id, title: productTitle, price: productPrice } = addedProduct;
-
       // New or updated cart item
       let cartItem;
       // Update items in cart
@@ -49,7 +48,6 @@ export default (state = initialState, action) => {
       const currentQty = selectedCartItem.quantity;
 
       let updatedCartItems;
-
       // Need to reduce, not delete
       if (currentQty > 1) {
         const updatedCartItem = new CartItem(

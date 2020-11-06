@@ -11,7 +11,7 @@ import {
 import { Touchable } from 'react-native-web';
 import Card from '../UI/Card';
 
-const ProductItem = ({ image, title, price, children, selectItemHandler }) => {
+const ProductItem = ({ image, title, price, children, onSelect }) => {
   let TouchableCmp = TouchableOpacity;
   if (Platform.OS === 'android' && Platform.Version >= 21) {
     TouchableCmp = TouchableNativeFeedback;
@@ -20,7 +20,7 @@ const ProductItem = ({ image, title, price, children, selectItemHandler }) => {
   return (
     <View style={styles.product}>
       <View style={styles.touchable}>
-        <TouchableCmp onPress={selectItemHandler} useForeground>
+        <TouchableCmp onPress={onSelect} useForeground>
           <View>
             <View style={styles.imageContainer}>
               <Image style={styles.image} source={{ uri: image }} />

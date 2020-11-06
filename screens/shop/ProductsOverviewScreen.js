@@ -14,7 +14,7 @@ const ProductsOverviewScreen = ({ navigation }) => {
 
   const selectItemHandler = (id, title) => {
     navigation.navigate('ProductDetail', {
-      // Forwarding id and title
+      // Forward id and title
       productId: id,
       productTitle: title
     });

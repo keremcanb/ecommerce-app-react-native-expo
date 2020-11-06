@@ -1,7 +1,7 @@
 import PRODUCTS from '../../data/dummy-data';
 import {
-  CREATE_PRODUCT,
-  UPDATE_PRODUCT,
+  // CREATE_PRODUCT,
+  // UPDATE_PRODUCT,
   DELETE_PRODUCT
 } from '../../constants/ReduxConstants';
 import Product from '../../models/product';
@@ -15,6 +15,12 @@ export default (state = initialState, action) => {
   const { type, pid } = action;
 
   switch (type) {
+    // case CREATE_PRODUCT:
+    //   return {};
+
+    // case UPDATE_PRODUCT:
+    //   return {};
+
     case DELETE_PRODUCT:
       return {
         ...state,

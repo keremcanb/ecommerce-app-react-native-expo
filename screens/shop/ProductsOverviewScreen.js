@@ -39,14 +39,6 @@ const ProductsOverviewScreen = ({ navigation }) => {
     loadProducts();
   }, [dispatch, loadProducts]);
 
-  const selectItemHandler = (id, title) => {
-    navigation.navigate('ProductDetail', {
-      // Forward id and title
-      productId: id,
-      productTitle: title
-    });
-  };
-
   useEffect(() => {
     const willFocusSub = navigation.addListener('willFocus', loadProducts);
     // Cleanup
@@ -54,6 +46,14 @@ const ProductsOverviewScreen = ({ navigation }) => {
       willFocusSub.remove();
     };
   }, [loadProducts]);
+
+  const selectItemHandler = (id, title) => {
+    navigation.navigate('ProductDetail', {
+      // Forward id and title
+      productId: id,
+      productTitle: title
+    });
+  };
 
   if (error) {
     return (

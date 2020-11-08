@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
@@ -5,15 +6,20 @@ import {
   Text,
   TextInput,
   StyleSheet,
-  Platform
+  Platform,
+  ActivityIndicator,
+  Alert
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
-
 import HeaderButton from '../../components/UI/HeaderButton';
 import { createProduct, updateProduct } from '../../store/actions/products';
+import Colors from '../../constants/Colors';
 
 const EditProductScreen = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
+
   const productId = navigation.getParam('productId');
 
   const editedProduct = useSelector((state) =>
@@ -31,18 +37,43 @@ const EditProductScreen = ({ navigation }) => {
 
   const dispatch = useDispatch();
 
-  const submitHandler = useCallback(() => {
-    if (editedProduct) {
-      dispatch(updateProduct(productId, title, description, imageUrl));
-    } else {
-      dispatch(createProduct(title, description, imageUrl, +price));
+  useEffect(() => {
+    if (error) {
+      Alert.alert('An error occurred!', error, [
+        {
+          text: 'Okay'
+        }
+      ]);
     }
-    navigation.goBack();
+  }, [error]);
+
+  const submitHandler = useCallback(async () => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      if (editedProduct) {
+        await dispatch(updateProduct(productId, title, description, imageUrl));
+      } else {
+        await dispatch(createProduct(title, description, imageUrl, +price));
+      }
+      navigation.goBack();
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
   }, [dispatch, productId, title, description, imageUrl, price]);
 
   useEffect(() => {
     navigation.setParams({ submit: submitHandler });
   }, [submitHandler]);
+
+  if (isLoading) {
+    return (
+      <View style={styles.centered}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
+  }
 
   return (
     <ScrollView>
@@ -125,6 +156,11 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     borderBottomColor: '#ccc',
     borderBottomWidth: 1
+  },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

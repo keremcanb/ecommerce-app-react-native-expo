@@ -19,24 +19,22 @@ const ProductItem = ({ image, title, price, children, onSelect }) => {
 
   return (
     <Card style={styles.product}>
-      <View style={styles.product}>
-        <View style={styles.touchable}>
-          <TouchableCmp onPress={onSelect} useForeground>
-            <View>
-              <View style={styles.imageContainer}>
-                <Image style={styles.image} source={{ uri: image }} />
-              </View>
-
-              <View style={styles.details}>
-                <Text style={styles.title}>{title}</Text>
-
-                <Text style={styles.price}>${price.toFixed(2)}</Text>
-              </View>
-              {/* Not clear */}
-              <View style={styles.actions}>{children}</View>
+      <View style={styles.touchable}>
+        <TouchableCmp onPress={onSelect} useForeground>
+          <View>
+            <View style={styles.imageContainer}>
+              <Image style={styles.image} source={{ uri: image }} />
             </View>
-          </TouchableCmp>
-        </View>
+
+            <View style={styles.details}>
+              <Text style={styles.title}>{title}</Text>
+
+              <Text style={styles.price}>${price.toFixed(2)}</Text>
+            </View>
+            {/* Not clear */}
+            <View style={styles.actions}>{children}</View>
+          </View>
+        </TouchableCmp>
       </View>
     </Card>
   );

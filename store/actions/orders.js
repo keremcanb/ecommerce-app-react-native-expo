@@ -16,6 +16,7 @@ export const fetchOrders = () => {
       }
 
       const resData = await response.json();
+
       const loadedOrders = [];
 
       for (const key in resData) {
@@ -28,6 +29,7 @@ export const fetchOrders = () => {
           )
         );
       }
+
       dispatch({ type: SET_ORDERS, orders: loadedOrders });
     } catch (err) {
       throw err;

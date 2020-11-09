@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useCallback } from 'react';
 import {
@@ -56,65 +57,53 @@ const ProductsOverviewScreen = ({ navigation }) => {
     });
   };
 
-  if (error) {
-    return (
-      <View style={styles.centered}>
-        <Text>An error occurred</Text>
-        <Button
-          title="Try again"
-          onPress={loadProducts}
-          color={Colors.primary}
+  return !error ? (
+    !isLoading ? (
+      !(!isLoading && products.length === 0) ? (
+        <FlatList
+          data={products}
+          keyExtractor={(item) => item.id}
+          renderItem={(itemData) => (
+            <ProductItem
+              image={itemData.item.imageUrl}
+              title={itemData.item.title}
+              price={itemData.item.price}
+              onSelect={() => {
+                selectItemHandler(itemData.item.id, itemData.item.title);
+              }}
+            >
+              <Button
+                title="View Details"
+                color={Colors.primary}
+                onPress={() => {
+                  selectItemHandler(itemData.item.id, itemData.item.title);
+                }}
+              />
+              <Button
+                title="Add to Cart"
+                color={Colors.primary}
+                onPress={() => {
+                  dispatch(addToCart(itemData.item));
+                }}
+              />
+            </ProductItem>
+          )}
         />
-      </View>
-    );
-  }
-
-  if (isLoading) {
-    return (
+      ) : (
+        <View style={styles.centered}>
+          <Text>No products found</Text>
+        </View>
+      )
+    ) : (
       <View style={styles.centered}>
         <ActivityIndicator size="large" color={Colors.primary} />
       </View>
-    );
-  }
-
-  if (!isLoading && products.length === 0) {
-    return (
-      <View style={styles.centered}>
-        <Text>No products found</Text>
-      </View>
-    );
-  }
-
-  return (
-    <FlatList
-      data={products}
-      keyExtractor={(item) => item.id}
-      renderItem={(itemData) => (
-        <ProductItem
-          image={itemData.item.imageUrl}
-          title={itemData.item.title}
-          price={itemData.item.price}
-          onSelect={() => {
-            selectItemHandler(itemData.item.id, itemData.item.title);
-          }}
-        >
-          <Button
-            title="View Details"
-            color={Colors.primary}
-            onPress={() => {
-              selectItemHandler(itemData.item.id, itemData.item.title);
-            }}
-          />
-          <Button
-            title="Add to Cart"
-            color={Colors.primary}
-            onPress={() => {
-              dispatch(addToCart(itemData.item));
-            }}
-          />
-        </ProductItem>
-      )}
-    />
+    )
+  ) : (
+    <View style={styles.centered}>
+      <Text>An error occurred</Text>
+      <Button title="Try again" onPress={loadProducts} color={Colors.primary} />
+    </View>
   );
 };
 

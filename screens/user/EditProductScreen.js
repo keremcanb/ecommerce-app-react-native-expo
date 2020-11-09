@@ -7,12 +7,12 @@ import {
   TextInput,
   StyleSheet,
   Platform,
-  ActivityIndicator,
   Alert
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
 import HeaderButton from '../../components/UI/HeaderButton';
+import Loader from '../../components/UI/Loader';
 import { createProduct, updateProduct } from '../../store/actions/products';
 import Colors from '../../constants/Colors';
 
@@ -67,15 +67,7 @@ const EditProductScreen = ({ navigation }) => {
     navigation.setParams({ submit: submitHandler });
   }, [submitHandler]);
 
-  if (isLoading) {
-    return (
-      <View style={styles.centered}>
-        <ActivityIndicator size="large" color={Colors.primary} />
-      </View>
-    );
-  }
-
-  return (
+  return !isLoading ? (
     <ScrollView>
       <View style={styles.form}>
         <View style={styles.formControl}>
@@ -117,6 +109,8 @@ const EditProductScreen = ({ navigation }) => {
         </View>
       </View>
     </ScrollView>
+  ) : (
+    <Loader />
   );
 };
 

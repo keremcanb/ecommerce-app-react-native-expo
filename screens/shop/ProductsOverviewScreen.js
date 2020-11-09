@@ -6,13 +6,13 @@ import {
   Button,
   Platform,
   Text,
-  ActivityIndicator,
   View,
   StyleSheet
 } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
+import Loader from '../../components/UI/Loader';
 import ProductItem from '../../components/shop/ProductItem';
 import { addToCart } from '../../store/actions/cart';
 import { fetchProducts } from '../../store/actions/products';
@@ -101,9 +101,7 @@ const ProductsOverviewScreen = ({ navigation }) => {
         </View>
       )
     ) : (
-      <View style={styles.centered}>
-        <ActivityIndicator size="large" color={Colors.primary} />
-      </View>
+      <Loader />
     )
   ) : (
     <View style={styles.centered}>

@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FlatList,
-  Text,
-  Platform,
-  StyleSheet,
-  ActivityIndicator,
-  View
-} from 'react-native';
+import { FlatList, Platform } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
+import Loader from '../../components/UI/Loader';
 import OrderItem from '../../components/shop/OrderItem';
 import { fetchOrders } from '../../store/actions/orders';
 import Colors from '../../constants/Colors';
@@ -41,9 +35,7 @@ const OrdersScreen = ({ navigation }) => {
       )}
     />
   ) : (
-    <View style={styles.centered}>
-      <ActivityIndicator size="large" color={Colors.primary} />
-    </View>
+    <Loader />
   );
 };
 
@@ -63,13 +55,5 @@ OrdersScreen.navigationOptions = (navData) => {
     )
   };
 };
-
-const styles = StyleSheet.create({
-  centered: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-});
 
 export default OrdersScreen;

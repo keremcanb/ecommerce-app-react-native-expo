@@ -1,18 +1,12 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
 import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  Button,
-  StyleSheet,
-  ActivityIndicator
-} from 'react-native';
+import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../../constants/Colors';
 import CartItem from '../../components/shop/CartItem';
 import Card from '../../components/UI/Card';
+import Loader from '../../components/UI/Loader';
 import { removeFromCart } from '../../store/actions/cart';
 import { addOrder } from '../../store/actions/orders';
 
@@ -63,9 +57,7 @@ const CartScreen = () => {
             onPress={sendOrderHandler}
           />
         ) : (
-          <View style={styles.centered}>
-            <ActivityIndicator size="large" color={Colors.primary} />
-          </View>
+          <Loader />
         )}
       </Card>
 

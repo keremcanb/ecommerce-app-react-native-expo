@@ -17,7 +17,7 @@ const CartScreen = () => {
 
   const cartItems = useSelector((state) => {
     const cartItemsArray = [];
-    // Convert item is cart to array
+    // Convert items in cart to array
     for (const key in state.cart.items) {
       cartItemsArray.push({
         productId: key,

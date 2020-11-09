@@ -21,6 +21,7 @@ export default (state = initialState, action) => {
         allProducts: products,
         userProducts: products
       };
+
     case CREATE_PRODUCT:
       const newProduct = new Product(
         new Date().toString(),

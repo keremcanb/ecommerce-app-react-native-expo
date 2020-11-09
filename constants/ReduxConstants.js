@@ -8,3 +8,4 @@ export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
 export const ADD_ORDER = 'ADD_ORDER';
 
 export const SET_PRODUCTS = 'SET_PRODUCTS';
+export const SET_ORDERS = 'SET_ORDERS';

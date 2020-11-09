@@ -1,4 +1,4 @@
-import { ADD_ORDER } from '../../constants/ReduxConstants';
+import { ADD_ORDER, SET_ORDERS } from '../../constants/ReduxConstants';
 import Order from '../../models/order';
 
 const initialState = {
@@ -6,9 +6,14 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  const { type, orderData } = action;
+  const { type, orderData, orders } = action;
 
   switch (type) {
+    case SET_ORDERS:
+      return {
+        orders
+      };
+
     case ADD_ORDER:
       const newOrder = new Order(
         new Date().toString(),

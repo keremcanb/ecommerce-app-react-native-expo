@@ -1,5 +1,41 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable guard-for-in */
+/* eslint-disable no-useless-catch */
 /* eslint-disable import/prefer-default-export */
-import { ADD_ORDER } from '../../constants/ReduxConstants';
+import { ADD_ORDER, SET_ORDERS } from '../../constants/ReduxConstants';
+import Order from '../../models/order';
+
+export const fetchOrders = () => {
+  return async (dispatch) => {
+    try {
+      const response = await fetch(
+        'https://expo-shop-7adf6.firebaseio.com/orders/u1.json'
+      );
+
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
+
+      const resData = await response.json();
+
+      const loadedOrders = [];
+
+      for (const key in resData)
+        loadedOrders.push(
+          new Order(
+            key,
+            resData[key].cartItems,
+            resData[key].totalAmount,
+            new Date(resData[key].date)
+          )
+        );
+
+      dispatch({ type: SET_ORDERS, products: loadedOrders });
+    } catch (err) {
+      throw err;
+    }
+  };
+};
 
 export const addOrder = (cartItems, totalAmount) => {
   return async (dispatch) => {

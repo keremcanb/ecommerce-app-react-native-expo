@@ -1,7 +1,14 @@
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable guard-for-in */
-import React from 'react';
-import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  FlatList,
+  Button,
+  StyleSheet,
+  ActivityIndicator
+} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../../constants/Colors';
 import CartItem from '../../components/shop/CartItem';
@@ -10,6 +17,8 @@ import { removeFromCart } from '../../store/actions/cart';
 import { addOrder } from '../../store/actions/orders';
 
 const CartScreen = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   const cartTotal = useSelector((state) => state.cart.totalAmount);
 
   const cartItems = useSelector((state) => {
@@ -30,6 +39,12 @@ const CartScreen = () => {
 
   const dispatch = useDispatch();
 
+  const sendOrderHandler = () => {
+    setIsLoading(true);
+    dispatch(addOrder(cartItems, cartTotal));
+    setIsLoading(false);
+  };
+
   return (
     <View style={styles.screen}>
       <Card style={styles.summary}>
@@ -40,14 +55,18 @@ const CartScreen = () => {
           </Text>
         </Text>
 
-        <Button
-          color={Colors.accent}
-          title="Order Now"
-          disabled={cartItems.length === 0}
-          onPress={() => {
-            dispatch(addOrder(cartItems, cartTotal));
-          }}
-        />
+        {!isLoading ? (
+          <Button
+            color={Colors.accent}
+            title="Order Now"
+            disabled={cartItems.length === 0}
+            onPress={sendOrderHandler}
+          />
+        ) : (
+          <View style={styles.centered}>
+            <ActivityIndicator size="large" color={Colors.primary} />
+          </View>
+        )}
       </Card>
 
       <FlatList
@@ -90,6 +109,11 @@ const styles = StyleSheet.create({
   },
   amount: {
     color: Colors.primary
+  },
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });
 

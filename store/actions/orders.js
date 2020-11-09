@@ -12,14 +12,13 @@ export const fetchOrders = () => {
       );
 
       if (!response.ok) {
-        throw new Error('Something went wrong');
+        throw new Error('Something went wrong!');
       }
 
       const resData = await response.json();
-
       const loadedOrders = [];
 
-      for (const key in resData)
+      for (const key in resData) {
         loadedOrders.push(
           new Order(
             key,
@@ -28,8 +27,8 @@ export const fetchOrders = () => {
             new Date(resData[key].date)
           )
         );
-
-      dispatch({ type: SET_ORDERS, products: loadedOrders });
+      }
+      dispatch({ type: SET_ORDERS, orders: loadedOrders });
     } catch (err) {
       throw err;
     }

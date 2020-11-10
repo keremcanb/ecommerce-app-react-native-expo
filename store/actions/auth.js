@@ -22,7 +22,7 @@ export const signUp = (email, password) => {
     }
 
     const resData = await response.json();
-    console.log(resData);
+
     dispatch({ type: SIGN_UP });
   };
 };

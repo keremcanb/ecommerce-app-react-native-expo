@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FlatList, Platform } from 'react-native';
+import { FlatList, Platform, View, Text, StyleSheet } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
@@ -22,20 +22,26 @@ const OrdersScreen = ({ navigation }) => {
     });
   }, [dispatch]);
 
-  return !isLoading ? (
-    <FlatList
-      data={orders}
-      keyExtractor={(item) => item.id}
-      renderItem={(itemData) => (
-        <OrderItem
-          amount={itemData.item.totalAmount}
-          date={itemData.item.readableDate}
-          items={itemData.item.items}
-        />
-      )}
-    />
+  return orders.length !== 0 ? (
+    !isLoading ? (
+      <FlatList
+        data={orders}
+        keyExtractor={(item) => item.id}
+        renderItem={(itemData) => (
+          <OrderItem
+            amount={itemData.item.totalAmount}
+            date={itemData.item.readableDate}
+            items={itemData.item.items}
+          />
+        )}
+      />
+    ) : (
+      <Loader />
+    )
   ) : (
-    <Loader />
+    <View style={styles.centered}>
+      <Text>No orders found</Text>
+    </View>
   );
 };
 
@@ -55,5 +61,13 @@ OrdersScreen.navigationOptions = (navData) => {
     )
   };
 };
+
+const styles = StyleSheet.create({
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
 
 export default OrdersScreen;

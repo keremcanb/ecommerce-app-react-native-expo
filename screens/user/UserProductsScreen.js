@@ -1,5 +1,13 @@
 import React from 'react';
-import { FlatList, Button, Platform, Alert } from 'react-native';
+import {
+  FlatList,
+  Button,
+  Platform,
+  Alert,
+  View,
+  Text,
+  StyleSheet
+} from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
@@ -29,7 +37,7 @@ const UserProductsScreen = ({ navigation }) => {
     ]);
   };
 
-  return (
+  return userProducts.length !== 0 ? (
     <FlatList
       data={userProducts}
       keyExtractor={(item) => item.id}
@@ -57,6 +65,10 @@ const UserProductsScreen = ({ navigation }) => {
         </ProductItem>
       )}
     />
+  ) : (
+    <View style={styles.centered}>
+      <Text>No products found</Text>
+    </View>
   );
 };
 
@@ -87,5 +99,13 @@ UserProductsScreen.navigationOptions = (navData) => {
     )
   };
 };
+
+const styles = StyleSheet.create({
+  centered: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
 
 export default UserProductsScreen;

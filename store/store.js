@@ -4,13 +4,15 @@ import thunk from 'redux-thunk';
 import products from './reducers/products';
 import cart from './reducers/cart';
 import orders from './reducers/orders';
+import auth from './reducers/auth';
 
 const middleware = [thunk];
 
 const rootReducer = combineReducers({
   products,
   cart,
-  orders
+  orders,
+  auth
 });
 
 const store = createStore(

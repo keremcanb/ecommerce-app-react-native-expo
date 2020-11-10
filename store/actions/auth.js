@@ -1,5 +1,4 @@
-export const SIGN_UP = 'SIGN_UP';
-export const SIGN_IN = 'SIGN_IN';
+import { SIGN_UP, SIGN_IN } from '../../constants/ReduxConstants';
 
 export const signUp = (email, password) => {
   return async (dispatch) => {
@@ -31,7 +30,11 @@ export const signUp = (email, password) => {
     const resData = await response.json();
     console.log(resData);
 
-    dispatch({ type: SIGN_UP });
+    dispatch({
+      type: SIGN_UP,
+      token: resData.idToken,
+      userId: resData.localId
+    });
   };
 };
 
@@ -67,6 +70,10 @@ export const signIn = (email, password) => {
     const resData = await response.json();
     console.log(resData);
 
-    dispatch({ type: SIGN_IN });
+    dispatch({
+      type: SIGN_IN,
+      token: resData.idToken,
+      userId: resData.localId
+    });
   };
 };

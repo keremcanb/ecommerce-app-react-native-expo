@@ -16,7 +16,7 @@ import Loader from '../../components/UI/Loader';
 import Colors from '../../constants/Colors';
 import { signUp, signIn } from '../../store/actions/auth';
 
-const AuthScreen = (props) => {
+const AuthScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
@@ -33,7 +33,6 @@ const AuthScreen = (props) => {
 
   const authHandler = async () => {
     let action;
-
     if (isSignUp) {
       action = signUp(email, password);
     } else {
@@ -43,10 +42,11 @@ const AuthScreen = (props) => {
     setIsLoading(true);
     try {
       await dispatch(action);
+      navigation.navigate('Shop');
     } catch (err) {
       setError(err.message);
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (

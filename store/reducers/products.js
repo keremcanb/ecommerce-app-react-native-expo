@@ -1,4 +1,3 @@
-import PRODUCTS from '../../data/dummy-data';
 import {
   CREATE_PRODUCT,
   UPDATE_PRODUCT,

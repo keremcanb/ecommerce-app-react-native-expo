@@ -31,6 +31,7 @@ module.exports = {
     'no-nested-ternary': 'off',
     'react-hooks/exhaustive-deps': 'off',
     'react/jsx-no-bind': 'off',
+    radix: 'off',
     'no-useless-catch': 'off'
   },
   globals: {

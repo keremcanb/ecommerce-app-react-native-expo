@@ -29,10 +29,10 @@ const EditProductScreen = ({ navigation }) => {
   const [imageUrl, setImageUrl] = useState(
     editedProduct ? editedProduct.imageUrl : ''
   );
-  const [price, setPrice] = useState('');
   const [description, setDescription] = useState(
     editedProduct ? editedProduct.description : ''
   );
+  const [price, setPrice] = useState('');
 
   const dispatch = useDispatch();
 

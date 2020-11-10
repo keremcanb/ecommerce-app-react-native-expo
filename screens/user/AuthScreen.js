@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   ScrollView,
   View,
@@ -6,11 +6,13 @@ import {
   StyleSheet,
   Button,
   Text,
-  TextInput
+  TextInput,
+  Alert
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch } from 'react-redux';
 import Card from '../../components/UI/Card';
+import Loader from '../../components/UI/Loader';
 import Colors from '../../constants/Colors';
 import { signUp, signIn } from '../../store/actions/auth';
 
@@ -18,15 +20,33 @@ const AuthScreen = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isSignUp, setIsSignUp] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState();
 
   const dispatch = useDispatch();
 
-  const authHandler = () => {
-    if (isSignUp) {
-      dispatch(signUp(email, password));
-    } else {
-      dispatch(signIn(email, password));
+  useEffect(() => {
+    if (error) {
+      Alert.alert('An Error Occurred', error, [{ text: 'Okay' }]);
     }
+  }, [error]);
+
+  const authHandler = async () => {
+    let action;
+
+    if (isSignUp) {
+      action = signUp(email, password);
+    } else {
+      action = signIn(email, password);
+    }
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(action);
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -61,11 +81,15 @@ const AuthScreen = (props) => {
             </View>
 
             <View style={styles.buttonContainer}>
-              <Button
-                title={isSignUp ? 'Sign Up' : 'Sign In'}
-                color={Colors.primary}
-                onPress={authHandler}
-              />
+              {!isLoading ? (
+                <Button
+                  title={isSignUp ? 'Sign Up' : 'Sign In'}
+                  color={Colors.primary}
+                  onPress={authHandler}
+                />
+              ) : (
+                <Loader />
+              )}
             </View>
 
             <View style={styles.buttonContainer}>

@@ -1,1 +1,1 @@
-import { SIGNUP, LOGIN } from '../../constants/ReduxConstants';
+import { SIGN_UP, LOGIN } from '../../constants/ReduxConstants';

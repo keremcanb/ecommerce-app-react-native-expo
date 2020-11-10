@@ -10,5 +10,5 @@ export const ADD_ORDER = 'ADD_ORDER';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 export const SET_ORDERS = 'SET_ORDERS';
 
-export const SIGNUP = 'SIGNUP';
+export const SIGN_UP = 'SIGN_UP';
 export const LOGIN = 'LOGIN';

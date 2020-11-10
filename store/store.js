@@ -5,8 +5,6 @@ import products from './reducers/products';
 import cart from './reducers/cart';
 import orders from './reducers/orders';
 
-// const initialState = {};
-
 const middleware = [thunk];
 
 const rootReducer = combineReducers({
@@ -17,7 +15,6 @@ const rootReducer = combineReducers({
 
 const store = createStore(
   rootReducer,
-  // initialState,
   composeWithDevTools(applyMiddleware(...middleware))
 );
 

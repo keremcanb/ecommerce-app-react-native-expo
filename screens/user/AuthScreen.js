@@ -10,19 +10,23 @@ import {
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch } from 'react-redux';
-import Input from '../../components/UI/Input';
 import Card from '../../components/UI/Card';
 import Colors from '../../constants/Colors';
-import { signUp } from '../../store/actions/auth';
+import { signUp, signIn } from '../../store/actions/auth';
 
 const AuthScreen = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSignUp, setIsSignUp] = useState(false);
 
   const dispatch = useDispatch();
 
-  const signUpHandler = () => {
-    dispatch(signUp(email, password));
+  const authHandler = () => {
+    if (isSignUp) {
+      dispatch(signUp(email, password));
+    } else {
+      dispatch(signIn(email, password));
+    }
   };
 
   return (
@@ -50,6 +54,7 @@ const AuthScreen = (props) => {
               <TextInput
                 style={styles.input}
                 value={password}
+                secureTextEntry
                 textContentType="password"
                 onChangeText={(text) => setPassword(text)}
               />
@@ -57,17 +62,19 @@ const AuthScreen = (props) => {
 
             <View style={styles.buttonContainer}>
               <Button
-                title="Login"
+                title={isSignUp ? 'Sign Up' : 'Sign In'}
                 color={Colors.primary}
-                onPress={signUpHandler}
+                onPress={authHandler}
               />
             </View>
 
             <View style={styles.buttonContainer}>
               <Button
-                title="Switch to Sign Up"
+                title={`Switch to ${isSignUp ? 'Sign In' : 'Sign Up'}`}
                 color={Colors.accent}
-                onPress={() => {}}
+                onPress={() => {
+                  setIsSignUp((prevState) => !prevState);
+                }}
               />
             </View>
           </ScrollView>

@@ -1,5 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
 import React, { useState } from 'react';
 import {
   ScrollView,
@@ -41,6 +39,7 @@ const AuthScreen = (props) => {
               <TextInput
                 style={styles.input}
                 value={email}
+                textContentType="emailAddress"
                 keyboardType="email-address"
                 onChangeText={(text) => setEmail(text)}
               />
@@ -51,34 +50,10 @@ const AuthScreen = (props) => {
               <TextInput
                 style={styles.input}
                 value={password}
+                textContentType="password"
                 onChangeText={(text) => setPassword(text)}
               />
             </View>
-
-            {/* <Input
-              id="email"
-              label="E-Mail"
-              keyboardType="email-address"
-              required
-              email
-              autoCapitalize="none"
-              errorText="Please enter a valid email address."
-              onInputChange={}
-              initialValue=""
-            />
-
-            <Input
-              id="password"
-              label="Password"
-              keyboardType="default"
-              secureTextEntry
-              required
-              minLength={5}
-              autoCapitalize="none"
-              errorText="Please enter a valid password."
-              onInputChange={}
-              initialValue=""
-            /> */}
 
             <View style={styles.buttonContainer}>
               <Button

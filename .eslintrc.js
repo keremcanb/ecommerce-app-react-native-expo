@@ -24,7 +24,14 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'no-case-declarations': 'off',
     'default-case': 'off',
-    'no-console': 'off'
+    'no-console': 'off',
+
+    'guard-for-in': 'off',
+    'no-restricted-syntax': 'off',
+    'no-nested-ternary': 'off',
+    'react-hooks/exhaustive-deps': 'off',
+    'react/jsx-no-bind': 'off',
+    'no-useless-catch': 'off'
   },
   globals: {
     fetch: false

@@ -1,6 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-useless-catch */
 import { ADD_ORDER, SET_ORDERS } from '../../constants/ReduxConstants';
 import Order from '../../models/order';
 

@@ -1,6 +1,3 @@
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable guard-for-in */
-/* eslint-disable no-useless-catch */
 import {
   CREATE_PRODUCT,
   UPDATE_PRODUCT,

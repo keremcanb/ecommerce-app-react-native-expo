@@ -6,7 +6,8 @@ import {
   TextInput,
   StyleSheet,
   Platform,
-  Alert
+  Alert,
+  KeyboardAvoidingView
 } from 'react-native';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import { useSelector, useDispatch } from 'react-redux';
@@ -67,6 +68,11 @@ const EditProductScreen = ({ navigation }) => {
   }, [submitHandler]);
 
   return !isLoading ? (
+    // <KeyboardAvoidingView
+    //   style={{ flex: 1 }}
+    //   behavior="padding"
+    //   keyboardVerticalOffset={100}
+    // >
     <ScrollView>
       <View style={styles.form}>
         <View style={styles.formControl}>
@@ -74,6 +80,8 @@ const EditProductScreen = ({ navigation }) => {
           <TextInput
             style={styles.input}
             value={title}
+            keyboardType="default"
+            returnKeyType="next"
             onChangeText={(text) => setTitle(text)}
           />
         </View>
@@ -83,6 +91,10 @@ const EditProductScreen = ({ navigation }) => {
           <TextInput
             style={styles.input}
             value={imageUrl}
+            keyboardType="default"
+            returnKeyType="next"
+            autoCapitalize="none"
+            autoCorrect="none"
             onChangeText={(text) => setImageUrl(text)}
           />
         </View>
@@ -93,6 +105,8 @@ const EditProductScreen = ({ navigation }) => {
             <TextInput
               style={styles.input}
               value={price}
+              keyboardType="decimal-pad"
+              returnKeyType="next"
               onChangeText={(text) => setPrice(text)}
             />
           </View>
@@ -103,12 +117,16 @@ const EditProductScreen = ({ navigation }) => {
           <TextInput
             style={styles.input}
             value={description}
+            keyboardType="default"
+            multiline
+            numberOfLines={3}
             onChangeText={(text) => setDescription(text)}
           />
         </View>
       </View>
     </ScrollView>
   ) : (
+    //  </KeyboardAvoidingView>
     <Loader />
   );
 };

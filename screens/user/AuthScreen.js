@@ -50,61 +50,67 @@ const AuthScreen = ({ navigation }) => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior="padding"
-      keyboardVerticalOffset={50}
-      style={styles.screen}
-    >
-      <LinearGradient colors={['#ffedff', '#ffe3ff']} style={styles.gradient}>
-        <Card style={styles.authContainer}>
-          <ScrollView>
-            <View style={styles.formControl}>
-              <Text style={styles.label}>Email</Text>
-              <TextInput
-                style={styles.input}
-                value={email}
-                textContentType="emailAddress"
-                keyboardType="email-address"
-                onChangeText={(text) => setEmail(text)}
-              />
-            </View>
+    // <KeyboardAvoidingView
+    //   behavior="padding"
+    //   keyboardVerticalOffset={50}
+    //   style={styles.screen}
+    // >
+    <LinearGradient colors={['#ffedff', '#ffe3ff']} style={styles.gradient}>
+      <Card style={styles.authContainer}>
+        <ScrollView>
+          <View style={styles.formControl}>
+            <Text style={styles.label}>Email</Text>
+            <TextInput
+              style={styles.input}
+              value={email}
+              textContentType="emailAddress"
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCompleteType="email"
+              returnKeyType="next"
+              onChangeText={(text) => setEmail(text)}
+            />
+          </View>
 
-            <View style={styles.formControl}>
-              <Text style={styles.label}>Password</Text>
-              <TextInput
-                style={styles.input}
-                value={password}
-                secureTextEntry
-                textContentType="password"
-                onChangeText={(text) => setPassword(text)}
-              />
-            </View>
+          <View style={styles.formControl}>
+            <Text style={styles.label}>Password</Text>
+            <TextInput
+              style={styles.input}
+              value={password}
+              secureTextEntry
+              autoCapitalize="none"
+              autoCompleteType="password"
+              textContentType="password"
+              passwordrules="required: lower; required: upper; required: digit; required: [-]; minlength: 6;"
+              onChangeText={(text) => setPassword(text)}
+            />
+          </View>
 
-            <View style={styles.buttonContainer}>
-              {!isLoading ? (
-                <Button
-                  title={isSignUp ? 'Sign Up' : 'Sign In'}
-                  color={Colors.primary}
-                  onPress={authHandler}
-                />
-              ) : (
-                <Loader />
-              )}
-            </View>
-
-            <View style={styles.buttonContainer}>
+          <View style={styles.buttonContainer}>
+            {!isLoading ? (
               <Button
-                title={`Switch to ${isSignUp ? 'Sign In' : 'Sign Up'}`}
-                color={Colors.accent}
-                onPress={() => {
-                  setIsSignUp((prevState) => !prevState);
-                }}
+                title={isSignUp ? 'Sign Up' : 'Sign In'}
+                color={Colors.primary}
+                onPress={authHandler}
               />
-            </View>
-          </ScrollView>
-        </Card>
-      </LinearGradient>
-    </KeyboardAvoidingView>
+            ) : (
+              <Loader />
+            )}
+          </View>
+
+          <View style={styles.buttonContainer}>
+            <Button
+              title={`Switch to ${isSignUp ? 'Sign In' : 'Sign Up'}`}
+              color={Colors.accent}
+              onPress={() => {
+                setIsSignUp((prevState) => !prevState);
+              }}
+            />
+          </View>
+        </ScrollView>
+      </Card>
+    </LinearGradient>
+    // </KeyboardAvoidingView>
   );
 };
 

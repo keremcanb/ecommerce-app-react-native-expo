@@ -4,7 +4,7 @@ import { enableScreens } from 'react-native-screens';
 import { AppLoading } from 'expo';
 import * as Font from 'expo-font';
 import store from './store/store';
-import ShopNavigator from './navigation/ShopNavigator';
+import NavigationContainer from './navigation/NavigationContainer';
 
 enableScreens();
 
@@ -20,7 +20,7 @@ const App = () => {
 
   return fontLoaded ? (
     <Provider store={store}>
-      <ShopNavigator />
+      <NavigationContainer />
     </Provider>
   ) : (
     <AppLoading

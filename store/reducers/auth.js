@@ -1,4 +1,4 @@
-import { AUTHENTICATE } from '../../constants/ReduxConstants';
+import { AUTHENTICATE, LOGOUT } from '../../constants/ReduxConstants';
 
 const initialState = {
   token: null,
@@ -14,6 +14,9 @@ export default (state = initialState, action) => {
         token,
         userId
       };
+
+    case LOGOUT:
+      return initialState;
 
     default:
       return state;

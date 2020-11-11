@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import { AUTHENTICATE } from '../../constants/ReduxConstants';
+import { AUTHENTICATE, LOGOUT } from '../../constants/ReduxConstants';
 
 export const authenticate = (userId, token) => {
   return { type: AUTHENTICATE, userId, token };
@@ -85,6 +85,10 @@ export const signIn = (email, password) => {
 
     saveDataToStorage(idToken, localId, expirationDate);
   };
+};
+
+export const logout = () => {
+  return { type: LOGOUT };
 };
 
 const saveDataToStorage = (token, userId, expirationDate) => {

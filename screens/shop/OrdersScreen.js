@@ -22,8 +22,8 @@ const OrdersScreen = ({ navigation }) => {
     });
   }, [dispatch]);
 
-  return orders.length !== 0 ? (
-    !isLoading ? (
+  return !isLoading ? (
+    orders.length !== 0 ? (
       <FlatList
         data={orders}
         keyExtractor={(item) => item.id}
@@ -36,12 +36,12 @@ const OrdersScreen = ({ navigation }) => {
         )}
       />
     ) : (
-      <Loader />
+      <View style={styles.centered}>
+        <Text>No orders found</Text>
+      </View>
     )
   ) : (
-    <View style={styles.centered}>
-      <Text>No orders found</Text>
-    </View>
+    <Loader />
   );
 };
 

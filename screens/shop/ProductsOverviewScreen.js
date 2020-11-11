@@ -59,9 +59,9 @@ const ProductsOverviewScreen = ({ navigation }) => {
     });
   };
 
-  return !error ? (
-    !isLoading ? (
-      !(!isLoading && products.length === 0) ? (
+  return !isLoading ? (
+    !(!isLoading && products.length === 0) ? (
+      !error ? (
         <FlatList
           onRefresh={loadProducts}
           refreshing={isRefreshing}
@@ -95,17 +95,21 @@ const ProductsOverviewScreen = ({ navigation }) => {
         />
       ) : (
         <View style={styles.centered}>
-          <Text>No products found</Text>
+          <Text>An error occurred</Text>
+          <Button
+            title="Try again"
+            onPress={loadProducts}
+            color={Colors.primary}
+          />
         </View>
       )
     ) : (
-      <Loader />
+      <View style={styles.centered}>
+        <Text>No products found</Text>
+      </View>
     )
   ) : (
-    <View style={styles.centered}>
-      <Text>An error occurred</Text>
-      <Button title="Try again" onPress={loadProducts} color={Colors.primary} />
-    </View>
+    <Loader />
   );
 };
 

@@ -19,6 +19,8 @@ import { signUp, signIn } from '../../store/actions/auth';
 const AuthScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
+
   const [isSignUp, setIsSignUp] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
@@ -85,6 +87,22 @@ const AuthScreen = ({ navigation }) => {
               onChangeText={(text) => setPassword(text)}
             />
           </View>
+
+          {isSignUp && (
+            <View style={styles.formControl}>
+              <Text style={styles.label}>Confirm Password</Text>
+              <TextInput
+                style={styles.input}
+                value={passwordConfirm}
+                secureTextEntry
+                autoCapitalize="none"
+                autoCompleteType="password"
+                textContentType="password"
+                passwordrules="required: lower; required: upper; required: digit; required: [-]; minlength: 6;"
+                onChangeText={(text) => setPasswordConfirm(text)}
+              />
+            </View>
+          )}
 
           <View style={styles.buttonContainer}>
             {!isLoading ? (

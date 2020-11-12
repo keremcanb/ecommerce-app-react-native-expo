@@ -94,7 +94,6 @@ const EditProductScreen = ({ navigation }) => {
             keyboardType="default"
             returnKeyType="next"
             autoCapitalize="none"
-            autoCorrect="none"
             onChangeText={(text) => setImageUrl(text)}
           />
         </View>
